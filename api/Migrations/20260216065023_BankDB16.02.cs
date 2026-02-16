@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -8,7 +7,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace api.Migrations
 {
     /// <inheritdoc />
-    public partial class Init : Migration
+    public partial class BankDB1602 : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -24,8 +23,7 @@ namespace api.Migrations
                     Purchase = table.Column<decimal>(type: "numeric(18,2)", precision: 18, scale: 2, nullable: false),
                     LastDiv = table.Column<decimal>(type: "numeric(18,2)", nullable: false),
                     Industry = table.Column<string>(type: "text", nullable: false),
-                    MarketCap = table.Column<long>(type: "bigint", nullable: false),
-                    Comments = table.Column<List<string>>(type: "text[]", nullable: false)
+                    MarketCap = table.Column<long>(type: "bigint", nullable: false)
                 },
                 constraints: table =>
                 {

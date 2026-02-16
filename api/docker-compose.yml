@@ -1,13 +1,14 @@
+name: api_for_bank
 services:
   db:
     image: postgres:18
     container_name: postgresBankApp
     environment:
-      POSTGRES_DB: BMW_ordinary
+      POSTGRES_DB: BANK_ordinary
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: pass
     ports:
-      - "5432:5432"
+      - "5434:5434"
     volumes:
       - pgdata:/var/lib/postgresql
 

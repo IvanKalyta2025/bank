@@ -1,10 +1,11 @@
-
+using api.Dtos.Stock;
+using api.Models;
 
 namespace api.Mappers
 {
     public static class StockMappers
     {
-        public static StockDto ToStockDto(this StockMappers stockModel)
+        public static StockDto ToStockDto(this Stock stockModel)
         {
             return new StockDto
             {

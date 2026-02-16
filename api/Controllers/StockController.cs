@@ -1,6 +1,7 @@
 
 using Microsoft.AspNetCore.Mvc;
 using api.Data;
+using api.Mappers;
 
 namespace api.Controllers
 {
@@ -17,7 +18,8 @@ namespace api.Controllers
         [HttpGet]
         public IActionResult GetAll()
         {
-            var stocks = _applicationDBContext.Stocks.ToList();
+            var stocks = _applicationDBContext.Stocks.ToList()
+            .Select(a => a.ToStockDto());
 
             return Ok(stocks);
         }
@@ -33,7 +35,7 @@ namespace api.Controllers
             }
             else
             {
-                return Ok(stock);
+                return Ok(stock.ToStockDto());
             }
         }
     }

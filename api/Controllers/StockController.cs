@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using api.Data;
 using api.Mappers;
+using api.Dtos.Stock;
 
 namespace api.Controllers
 {
@@ -37,6 +38,40 @@ namespace api.Controllers
             {
                 return Ok(stock.ToStockDto());
             }
+        }
+        [HttpGet("bymarker/{marker}")]
+        public IActionResult GetByMarker([FromRoute] string marker)
+        {
+            var stock = _applicationDBContext.Stocks.Find(marker);
+            if (stock == null)
+            {
+                return NotFound();
+            }
+            else
+            {
+                return Ok(stock.ToStockDtoWithMarkerIndificator());
+            }
+        }
+
+
+        // [HttpPost]
+        // public IActionResult Create([FromBody] CreateStockRequestDto stockDto)
+        // {
+        //     var stockModel = stockDto.ToStockFromCreateDTO();
+        //     _applicationDBContext.Stocks.Add(stockModel);
+        //     _applicationDBContext.SaveChanges();
+
+        //     return CreatedAtAction(nameof(GetById), new { id = stockModel.Id }, stockModel.ToStockDto());
+        // }
+        [HttpPost]
+        public IActionResult CreateStockFromDto([FromBody] CreateStockRequestDto stockDtoRequest)
+        {
+            var stockModel = stockDtoRequest.ToStockFromCreateDTO();
+            _applicationDBContext.Stocks.Add(stockModel);
+            _applicationDBContext.SaveChanges();
+
+            return CreatedAtAction(nameof(GetById), new { id = stockModel.Id }, stockModel.ToStockDto());
+
         }
     }
 }

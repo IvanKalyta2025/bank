@@ -15,7 +15,21 @@ namespace api.Mappers
                 Purchase = stockModel.Purchase,
                 LastDiv = stockModel.LastDiv,
                 Industry = stockModel.Industry,
-                MarketCap = stockModel.MarketCap
+                MarketCap = stockModel.MarketCap,
+            };
+        }
+        public static StockDto ToStockDtoWithMarkerIndificator(this Stock stockModel)
+        {
+            return new StockDto
+            {
+                Id = stockModel.Id,
+                Symbol = stockModel.Symbol,
+                CompanyName = stockModel.CompanyName,
+                Purchase = stockModel.Purchase,
+                LastDiv = stockModel.LastDiv,
+                Industry = stockModel.Industry,
+                MarketCap = stockModel.MarketCap,
+                Marker = stockModel.Marker
             };
         }
         public static Stock ToStockFromCreateDTO(this CreateStockRequestDto stockDto)
@@ -28,7 +42,6 @@ namespace api.Mappers
                 LastDiv = stockDto.LastDiv,
                 Industry = stockDto.Industry,
                 MarketCap = stockDto.MarketCap
-
             };
         }
 

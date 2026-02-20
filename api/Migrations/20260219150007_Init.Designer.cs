@@ -12,8 +12,8 @@ using api.Data;
 namespace api.Migrations
 {
     [DbContext(typeof(ApplicationDBContext))]
-    [Migration("20260216065023_BankDB16.02")]
-    partial class BankDB1602
+    [Migration("20260219150007_Init")]
+    partial class Init
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -72,6 +72,10 @@ namespace api.Migrations
 
                     b.Property<decimal>("LastDiv")
                         .HasColumnType("decimal(18,2)");
+
+                    b.Property<string>("Marker")
+                        .IsRequired()
+                        .HasColumnType("text");
 
                     b.Property<long>("MarketCap")
                         .HasColumnType("bigint");

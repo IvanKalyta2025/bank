@@ -17,6 +17,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyProductAttribute("api")]
 [assembly: System.Reflection.AssemblyTitleAttribute("api")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
+[assembly: System.Reflection.AssemblyMetadata("Microsoft.Testing.Platform.Application", "true")]
 
 // Создано классом WriteCodeFragment MSBuild.
 

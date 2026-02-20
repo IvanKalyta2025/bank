@@ -1,0 +1,16 @@
+name: api_for_bank
+services:
+  db:
+    image: postgres:18
+    container_name: postgresBankApp
+    environment:
+      POSTGRES_DB: BANK_ordinary
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: pass
+    volumes:
+      - /var/lib/postgresql
+    ports:
+      - "5432:5432"
+
+volumes:
+  pgdata:

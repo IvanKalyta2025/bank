@@ -19,6 +19,6 @@ namespace api.Models
 
         public long MarketCap { get; set; }
         public string Marker { get; set; } = string.Empty;
-        public List<string> Comments { get; set; } = new List<string>();
+        // public List<string> Comments { get; set; } = new List<string>();
     }
 }

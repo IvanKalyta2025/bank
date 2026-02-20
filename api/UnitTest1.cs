@@ -1,32 +1,51 @@
+
+
+
+using Microsoft.AspNetCore.Mvc.Testing;
 using Xunit;
-using api.Data;
-using Moq;
-using api.Controllers;
-
-
 
 namespace api;
 
 
-public class GetALLTest
+public class GetAllTests : IClassFixture<WebApplicationFactory<Program>>
 {
-    private readonly Mock<ApplicationDBContext> _mockRepository;
-    private readonly StockController _controller;
-
-    public GetALLTest()
-    {
-        _mockRepository = new Mock<ApplicationDBContext>();
-        _controller = new StockController(_mockRepository.Object);
-    }
-
-    [Fact]
-    public async Task GetAllByController()
-    {
-
-    }
-
 
 }
+
+
+
+
+
+
+// public class GetALLTest
+// {
+//     private readonly Mock<ApplicationDBContext> _mockRepository;
+//     private readonly StockController _controller;
+
+//     public GetALLTest()
+//     {
+//         _mockRepository = new Mock<ApplicationDBContext>();
+//         _controller = new StockController(_mockRepository.Object);
+//     }
+
+//     [Fact]
+//     public async Task GetAllByController()
+//     {
+//         var stock = new StockDto{
+//             Id = 2, 
+//             CompanyName = "Tesla",
+//             Industry = "Auto",
+//             Symbol = "TSLA",
+//             Purchase = 32,
+//             LastDiv = 33,
+//             MarketCap = 232342
+//             };
+//             _controller.GetById();
+
+//     }
+
+
+// }
 
 
 //устновка рсширегий

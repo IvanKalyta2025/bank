@@ -11,12 +11,13 @@ namespace api;
 public class GetAllTests : IClassFixture<WebApplicationFactory<StockController>>
 
 {
-    private readonly WebApplicationFactory<StockController> _factoty;
-    public GetAllTests(WebApplicationFactory<StockController> factory)
-    {
-        _factoty = factory;
-    }
-
+    // private readonly WebApplicationFactory<StockController> _factoty;
+    // public GetAllTests(WebApplicationFactory<StockController> factory)
+    // {
+    //     _factoty = factory;
+    // }
+    // [Fact]
+    // public async Task 
 }
 
 

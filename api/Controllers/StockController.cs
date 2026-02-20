@@ -3,6 +3,8 @@ using Microsoft.AspNetCore.Mvc;
 using api.Data;
 using api.Mappers;
 using api.Dtos.Stock;
+using System.IO.Compression;
+using api.Models;
 
 namespace api.Controllers
 {
@@ -62,6 +64,18 @@ namespace api.Controllers
             return CreatedAtAction(nameof(GetById), new { id = stockModel.Id }, stockModel.ToStockDto());
 
         }
+        // [HttpPut]
+        // [Route("{id}")]
+        // public IActionResult  Update([FromRoute] int id, [FromBody]UpdateStockRequestDto updateStockRequestDto)
+
+        // {
+        //     var stockModel = _applicationDBContext.Stocks.FirstOrDefault(x => x.Id == id);
+        //     if (stockModel == null)
+        //     {
+        //         return  NotFound();
+        //     }
+        //     stockModel.Symbol = updateStockRequestDto 
+        // }
     }
 }
 

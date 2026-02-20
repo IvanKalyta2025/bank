@@ -1,14 +1,21 @@
 
 
 
+using api.Controllers;
 using Microsoft.AspNetCore.Mvc.Testing;
 using Xunit;
 
 namespace api;
 
+//https://andrewlock.net/exploring-dotnet-6-part-6-supporting-integration-tests-with-webapplicationfactory-in-dotnet-6/
+public class GetAllTests : IClassFixture<WebApplicationFactory<StockController>>
 
-public class GetAllTests : IClassFixture<WebApplicationFactory<Program>>
 {
+    private readonly WebApplicationFactory<StockController> _factoty;
+    public GetAllTests(WebApplicationFactory<StockController> factory)
+    {
+        _factoty = factory;
+    }
 
 }
 

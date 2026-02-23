@@ -1,12 +1,18 @@
 name: api_for_bank
 services:
-  backend:
-    image: BankApp
+  api:
+    image: bankapp
     build:
-      context: ./backend
+      context: .
+      dockerfile: DockerFile
     depends_on:
       db:
         condition: service_healthy
+    ports:
+      - "8080:8080"
+    environment:
+      ASPNETCORE_URLS: http://+:8080
+      ConnectionStrings__DefaultConnection: Host=db;Port=5432;Database=${POSTGRES_DB};Username=${POSTGRES_USER};Password=${DB_PASSWORD}
   db:
     image: postgres:18
     container_name: postgresBankApp
@@ -20,7 +26,7 @@ services:
       timeout: 5s
       retries: 5
     volumes:
-      - /var/lib/postgresql/data
+      - db-data:/var/lib/postgresql/data
     ports:
       - "5432:5432"
 volumes:

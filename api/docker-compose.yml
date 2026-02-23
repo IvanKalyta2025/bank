@@ -14,7 +14,7 @@ services:
       ASPNETCORE_URLS: http://+:8080
       ConnectionStrings__DefaultConnection: Host=db;Port=5432;Database=${POSTGRES_DB};Username=${POSTGRES_USER};Password=${DB_PASSWORD}
   db:
-    image: postgres:18
+    image: postgres:17
     container_name: postgresBankApp
     environment:
       POSTGRES_DB: ${POSTGRES_DB}

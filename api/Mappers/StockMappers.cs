@@ -29,7 +29,6 @@ namespace api.Mappers
                 LastDiv = stockModel.LastDiv,
                 Industry = stockModel.Industry,
                 MarketCap = stockModel.MarketCap,
-                Marker = stockModel.Marker
             };
         }
         public static Stock ToStockFromCreateDTO(this CreateStockRequestDto stockDto)
@@ -41,7 +40,7 @@ namespace api.Mappers
                 Purchase = stockDto.Purchase,
                 LastDiv = stockDto.LastDiv,
                 Industry = stockDto.Industry,
-                MarketCap = stockDto.MarketCap
+                MarketCap = stockDto.MarketCap,
             };
         }
 

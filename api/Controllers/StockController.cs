@@ -41,19 +41,6 @@ namespace api.Controllers
                 return Ok(stock.ToStockDto());
             }
         }
-        [HttpGet("bymarker/{marker}")]
-        public IActionResult GetByMarker([FromRoute] string marker)
-        {
-            var stock = _applicationDBContext.Stocks.Find(marker);
-            if (stock == null)
-            {
-                return NotFound();
-            }
-            else
-            {
-                return Ok(stock.ToStockDtoWithMarkerIndificator());
-            }
-        }
         [HttpPost]
         public IActionResult CreateStockFromDto([FromBody] CreateStockRequestDto stockDtoRequest)
         {
@@ -64,18 +51,7 @@ namespace api.Controllers
             return CreatedAtAction(nameof(GetById), new { id = stockModel.Id }, stockModel.ToStockDto());
 
         }
-        // [HttpPut]
-        // [Route("{id}")]
-        // public IActionResult  Update([FromRoute] int id, [FromBody]UpdateStockRequestDto updateStockRequestDto)
 
-        // {
-        //     var stockModel = _applicationDBContext.Stocks.FirstOrDefault(x => x.Id == id);
-        //     if (stockModel == null)
-        //     {
-        //         return  NotFound();
-        //     }
-        //     stockModel.Symbol = updateStockRequestDto 
-        // }
     }
 }
 

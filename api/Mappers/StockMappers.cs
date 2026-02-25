@@ -18,23 +18,11 @@ namespace api.Mappers
                 MarketCap = stockModel.MarketCap,
             };
         }
-        public static StockDto ToStockDtoWithMarkerIndificator(this Stock stockModel)
-        {
-            return new StockDto
-            {
-                Id = stockModel.Id,
-                Symbol = stockModel.Symbol,
-                CompanyName = stockModel.CompanyName,
-                Purchase = stockModel.Purchase,
-                LastDiv = stockModel.LastDiv,
-                Industry = stockModel.Industry,
-                MarketCap = stockModel.MarketCap,
-            };
-        }
         public static Stock ToStockFromCreateDTO(this CreateStockRequestDto stockDto)
         {
             return new Stock
             {
+                Id = stockDto.Id,
                 Symbol = stockDto.Symbol,
                 CompanyName = stockDto.CompanyName,
                 Purchase = stockDto.Purchase,

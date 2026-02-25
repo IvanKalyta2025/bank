@@ -70,10 +70,6 @@ namespace api.Migrations
                     b.Property<decimal>("LastDiv")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<string>("Marker")
-                        .IsRequired()
-                        .HasColumnType("text");
-
                     b.Property<long>("MarketCap")
                         .HasColumnType("bigint");
 

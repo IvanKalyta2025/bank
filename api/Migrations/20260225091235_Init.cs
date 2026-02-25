@@ -23,8 +23,7 @@ namespace api.Migrations
                     Purchase = table.Column<decimal>(type: "numeric(18,2)", precision: 18, scale: 2, nullable: false),
                     LastDiv = table.Column<decimal>(type: "numeric(18,2)", nullable: false),
                     Industry = table.Column<string>(type: "text", nullable: false),
-                    MarketCap = table.Column<long>(type: "bigint", nullable: false),
-                    Marker = table.Column<string>(type: "text", nullable: false)
+                    MarketCap = table.Column<long>(type: "bigint", nullable: false)
                 },
                 constraints: table =>
                 {

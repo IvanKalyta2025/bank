@@ -5,6 +5,7 @@ using api.Mappers;
 using api.Dtos.Stock;
 using System.IO.Compression;
 using api.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace api.Controllers
 {
@@ -70,6 +71,22 @@ namespace api.Controllers
             _applicationDBContext.SaveChanges();
 
             return Ok(stockModel.ToStockDto());
+        }
+        [HttpDelete]
+        [Route("{id}")]
+        public IActionResult Delete([FromRoute] int id)
+        {
+            var stockModel = _applicationDBContext.Stocks.FirstOrDefault(x => x.Id == id);
+
+            if (stockModel == null)
+            {
+                return NotFound();
+            }
+
+            _applicationDBContext.Stocks.Remove(stockModel);
+            _applicationDBContext.SaveChanges();
+
+            return NoContent();
         }
 
 

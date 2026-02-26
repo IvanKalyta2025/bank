@@ -65,7 +65,7 @@ namespace api.Controllers
             stockModel.LastDiv = updateStockRequestDto.LastDiv;
             stockModel.Industry = updateStockRequestDto.Industry;
             stockModel.MarketCap = updateStockRequestDto.MarketCap;
-            _applicationDBContext.SaveChanges();
+            await _applicationDBContext.SaveChangesAsync();
             return Ok(stockModel.ToStockDto());
         }
         [HttpDelete]
@@ -77,7 +77,6 @@ namespace api.Controllers
             {
                 return NotFound();
             }
-
             _applicationDBContext.Stocks.Remove(stockModel);
             await _applicationDBContext.SaveChangesAsync();
             return NoContent(); //fordi etter å slette noe, vår result det er ingenting.

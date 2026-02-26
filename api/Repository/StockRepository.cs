@@ -7,6 +7,7 @@ using api.Dtos.Stock;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Http.HttpResults;
 using api.Mappers;
+using System.IO.Compression;
 
 namespace api.Repository
 {
@@ -31,12 +32,23 @@ namespace api.Repository
         }
         public async Task<Stock?> GetByIdAsync(int id)
         {
-            var stock = await _context.Stocks.FindAsync(id);
-            return stock;
+            return await _context.Stocks.FindAsync(id);
         }
         public async Task<Stock?> UpdateAsync(int id, UpdateStockRequestDto updateStockRequestDto)
         {
-            throw new NotImplementedException();
+            var stockModel = await _context.Stocks.FirstOrDefaultAsync(x => x.Id == id);
+            if (stockModel == null)
+            {
+                return null;
+            }
+            stockModel.Symbol = updateStockRequestDto.Symbol;
+            stockModel.CompanyName = updateStockRequestDto.CompanyName;
+            stockModel.Purchase = updateStockRequestDto.Purchase;
+            stockModel.LastDiv = updateStockRequestDto.LastDiv;
+            stockModel.Industry = updateStockRequestDto.Industry;
+            stockModel.MarketCap = updateStockRequestDto.MarketCap;
+            await _context.SaveChangesAsync();
+            return stockModel;
         }
         public async Task<Stock?> DeleteAsync(int id)
         {

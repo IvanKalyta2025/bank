@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Http.HttpResults;
 using api.Mappers;
 using System.IO.Compression;
+using System.Reflection.Metadata.Ecma335;
 
 namespace api.Repository
 {
@@ -28,7 +29,7 @@ namespace api.Repository
         }
         public async Task<List<Stock>> GetAllAsync()
         {
-            throw new NotImplementedException();
+            return await _context.Stocks.ToListAsync();
         }
         public async Task<Stock?> GetByIdAsync(int id)
         {

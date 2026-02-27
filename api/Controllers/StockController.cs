@@ -8,6 +8,7 @@ using api.Models;
 using Microsoft.EntityFrameworkCore;
 using api.Interfaces;
 using api.Repository;
+using System.Reflection.Metadata.Ecma335;
 
 namespace api.Controllers
 {
@@ -46,20 +47,19 @@ namespace api.Controllers
             }
         }
         [HttpPost]
-        public async Task<IActionResult> CreateStockFromDto([FromBody] CreateStockRequestDto stockDtoRequest)
+        public async Task<IActionResult> CreateStock([FromBody] CreateStockRequestDto stockDtoRequest)
         {
             var stockModel = stockDtoRequest.ToStockFromCreateDTO();
             await _applicationDBContext.Stocks.AddAsync(stockModel);
-            await _applicationDBContext.SaveChangesAsync();
+            await _stockRepository.CreateAsync(stockModel);
 
             return CreatedAtAction(nameof(GetById), new { id = stockModel.Id }, stockModel.ToStockDto());
         }
         [HttpPut]
         [Route("{id}")]
-        public async Task<IActionResult> Update([FromRoute] int id)
+        public async Task<IActionResult> Update(int id, UpdateStockRequestDto updateStockRequestDto)
         {
-            var stockModel = await _applicationDBContext.Stocks.FirstOrDefaultAsync(x => x.Id == id);
-            return Ok(stockModel);
+            throw new NotImplementedException();
         }
         [HttpDelete]
         [Route("{id}")]

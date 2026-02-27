@@ -56,21 +56,10 @@ namespace api.Controllers
         }
         [HttpPut]
         [Route("{id}")]
-        public async Task<IActionResult> Update([FromRoute] int id, [FromBody] UpdateStockRequestDto updateStockRequestDto)
+        public async Task<IActionResult> Update([FromRoute] int id)
         {
             var stockModel = await _applicationDBContext.Stocks.FirstOrDefaultAsync(x => x.Id == id);
-            if (stockModel == null)
-            {
-                return NotFound();
-            }
-            stockModel.Symbol = updateStockRequestDto.Symbol;
-            stockModel.CompanyName = updateStockRequestDto.CompanyName;
-            stockModel.Purchase = updateStockRequestDto.Purchase;
-            stockModel.LastDiv = updateStockRequestDto.LastDiv;
-            stockModel.Industry = updateStockRequestDto.Industry;
-            stockModel.MarketCap = updateStockRequestDto.MarketCap;
-            await _applicationDBContext.SaveChangesAsync();
-            return Ok(stockModel.ToStockDto());
+            return Ok(stockModel);
         }
         [HttpDelete]
         [Route("{id}")]

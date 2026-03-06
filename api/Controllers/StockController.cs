@@ -50,28 +50,29 @@ namespace api.Controllers
         public async Task<IActionResult> CreateStock([FromBody] CreateStockRequestDto stockDtoRequest)
         {
             var stockModel = stockDtoRequest.ToStockFromCreateDTO();
-            await _applicationDBContext.Stocks.AddAsync(stockModel);
             await _stockRepository.CreateAsync(stockModel);
-
             return CreatedAtAction(nameof(GetById), new { id = stockModel.Id }, stockModel.ToStockDto());
         }
         [HttpPut]
         [Route("{id}")]
-        public async Task<IActionResult> Update(int id, UpdateStockRequestDto updateStockRequestDto)
+        public async Task<IActionResult> Update([FromRoute] int id, [FromBody] UpdateStockRequestDto updateStockRequestDto)
         {
-            throw new NotImplementedException();
+            var stockModel = await _stockRepository.UpdateAsync(id, updateStockRequestDto);
+            if (stockModel == null)
+            {
+                return NotFound();
+            }
+            return Ok(stockModel.ToStockDto());//он тут возвращает так же то сток дто,  но не понятная связь
         }
         [HttpDelete]
         [Route("{id}")]
         public async Task<IActionResult> Delete([FromRoute] int id)
         {
-            var stockModel = await _applicationDBContext.Stocks.FirstOrDefaultAsync(x => x.Id == id);
+            var stockModel = await _stockRepository.DeleteAsync(id);
             if (stockModel == null)
             {
                 return NotFound();
             }
-            _applicationDBContext.Stocks.Remove(stockModel);
-            await _applicationDBContext.SaveChangesAsync();
             return NoContent(); //fordi etter å slette noe, vår result det er ingenting.
         }
     }

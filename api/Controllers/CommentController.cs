@@ -1,22 +1,27 @@
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
+
 using api.Interfaces;
+using api.Mappers;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
+
 
 namespace api.Controllers
 {
     [Route("api/comment")]
     [ApiController]
-    public class CommentController : Controller
+    public class CommentController : ControllerBase
     {
         private readonly ICommentRepository _commentRepository;
         public CommentController(ICommentRepository commentRepository)
         {
             _commentRepository = commentRepository;
+        }
+        [HttpGet]
+        public async Task<IActionResult> GetALL()
+        {
+            var comments = await _commentRepository.GetAllAsync();
+
+            var commentDto = comments.Select(s => s.ToCommentDto());
+            return Ok(comments);
         }
     }
 }
